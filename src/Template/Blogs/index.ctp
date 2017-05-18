@@ -3,35 +3,37 @@
   * @var \App\View\AppView $this
   */
 ?>
-<!-- <nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Department'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Subjects'), ['controller' => 'Subjects', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Subject'), ['controller' => 'Subjects', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Blog'), ['action' => 'add']) ?></li>
     </ul>
-</nav> -->
-<div class="departments index large-9 medium-8 columns content">
-    <h3><?= __('Departments') ?></h3>
+</nav>
+<div class="blogs index large-9 medium-8 columns content">
+    <h3><?= __('Blogs') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('feature') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($departments as $department): ?>
+            <?php foreach ($blogs as $blog): ?>
             <tr>
-                <td><?= $this->Number->format($department->id) ?></td>
-                <td><?= h($department->name) ?></td>
-                <td><?= h($department->modified) ?></td>
+                <td><?= $this->Number->format($blog->id) ?></td>
+                <td><?= h($blog->title) ?></td>
+                <td><?= h($blog->created) ?></td>
+                <td><?= h($blog->modified) ?></td>
+                <td><?= $this->Number->format($blog->feature) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $department->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $department->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $department->id], ['confirm' => __('Are you sure you want to delete # {0}?', $department->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $blog->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $blog->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $blog->id], ['confirm' => __('Are you sure you want to delete # {0}?', $blog->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

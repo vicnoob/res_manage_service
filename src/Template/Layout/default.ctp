@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Dashboard';
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,18 +37,23 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+                <h1><a href=""><?= $cakeDescription ?></a></h1>
             </li>
         </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
+        
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
+    <nav class="large-3 medium-4 columns" id="actions-sidebar">
+        <ul class="side-nav">
+            <li class="heading"><?= __('Actions') ?></li>
+            <li><?= $this->Html->link(__('Departments'), ['controller' => 'Departments', 'action' => 'index']) ?></li>
+            <li><?= $this->Html->link(__('Subjects'), ['controller' => 'Subjects', 'action' => 'index']) ?></li>
+            <li><?= $this->Html->link(__('Sliders'), ['controller' => 'Subjects', 'action' => 'index']) ?></li>
+            <li><?= $this->Html->link(__('Blog'), ['controller' => 'Subjects', 'action' => 'index']) ?></li>
+
+        </ul>
+    </nav>
         <?= $this->fetch('content') ?>
     </div>
     <footer>
