@@ -49,8 +49,8 @@ $cakeDescription = 'Dashboard';
             <li class="heading"><?= __('Actions') ?></li>
             <li><?= $this->Html->link(__('Departments'), ['controller' => 'Departments', 'action' => 'index']) ?></li>
             <li><?= $this->Html->link(__('Subjects'), ['controller' => 'Subjects', 'action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('Sliders'), ['controller' => 'Subjects', 'action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('Blog'), ['controller' => 'Subjects', 'action' => 'index']) ?></li>
+            <li><?= $this->Html->link(__('Sliders'), ['controller' => 'Sliders', 'action' => 'index']) ?></li>
+            <li><?= $this->Html->link(__('Blog'), ['controller' => 'Blogs', 'action' => 'index']) ?></li>
 
         </ul>
     </nav>

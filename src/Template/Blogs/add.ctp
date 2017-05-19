@@ -16,6 +16,7 @@
         <?php
             echo $this->Form->control('title');
             echo $this->Form->control('content');
+            // echo $this->Froala->plugin();
             echo $this->Form->control('feature');
         ?>
     </fieldset>

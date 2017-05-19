@@ -18,6 +18,8 @@ class BlogsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+    // public $helpers = array('TinyMCE.TinyMCE');
+    // $this->loadHelper('Froala.Froala');
     public function index()
     {
         $blogs = $this->paginate($this->Blogs);
@@ -50,6 +52,7 @@ class BlogsController extends AppController
      */
     public function add()
     {
+        // public $helpers = array('Froala.Froala');
         $blog = $this->Blogs->newEntity();
         if ($this->request->is('post')) {
             $blog = $this->Blogs->patchEntity($blog, $this->request->getData());

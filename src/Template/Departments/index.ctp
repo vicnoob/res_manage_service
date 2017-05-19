@@ -23,6 +23,7 @@
             </tr>
         </thead>
         <tbody>
+
             <?php foreach ($departments as $department): ?>
             <tr>
                 <td><?= $this->Number->format($department->id) ?></td>
@@ -33,7 +34,17 @@
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $department->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $department->id], ['confirm' => __('Are you sure you want to delete # {0}?', $department->id)]) ?>
                 </td>
+                
+                
+
             </tr>
+            <?php foreach($department['subjects'] as $subject): ?>
+                    <tr>
+                    <td> </td>
+                    <td> <?= $subject['name'] ?> </td>
+                    <td> <?= $subject['description'] ?> </td>
+                    </tr>
+                <?php endforeach; ?> 
             <?php endforeach; ?>
         </tbody>
     </table>
@@ -46,5 +57,19 @@
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    </div>
+    <div class="departments form large-9 medium-8 columns content">
+    <!-- $this->Form->create("Post",array('action'=>'add')); -->
+        <?= $this->Form->create(null,['url' => ['action' => 'add']] ) ?>
+        <fieldset>
+            <legend><?= __('Add Department') ?></legend>
+            <?php
+                echo $this->Form->control('name');
+                echo $this->Form->control('description');
+                echo $this->Form->control('subjects._ids', ['options' => $subjects]);
+            ?>
+        </fieldset>
+        <?= $this->Form->button(__('Submit')) ?>
+        <?= $this->Form->end() ?>
     </div>
 </div>

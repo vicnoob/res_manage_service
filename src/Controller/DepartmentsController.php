@@ -20,10 +20,17 @@ class DepartmentsController extends AppController
      */
     public function index()
     {
-        $departments = $this->paginate($this->Departments);
-
-        $this->set(compact('departments'));
+        $departments = $this->paginate($this->Departments->find('all',array(
+            'contain'=>array('Subjects'))));
+        $a = json_encode($departments);
+        // echo $a;
+        // $this->add();
+        $subjects = $this->Departments->Subjects->find('list', ['limit' => 200]);
+        $id=$this->request->data('id');
+        $this->set(compact('departments', 'subjects'));
         $this->set('_serialize', ['departments']);
+
+
     }
 
     /**
@@ -38,7 +45,6 @@ class DepartmentsController extends AppController
         $department = $this->Departments->get($id, [
             'contain' => ['Subjects']
         ]);
-
         $this->set('department', $department);
         $this->set('_serialize', ['department']);
     }
