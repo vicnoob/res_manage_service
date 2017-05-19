@@ -39,12 +39,29 @@
 
             </tr>
             <?php foreach($department['subjects'] as $subject): ?>
+
                     <tr>
                     <td> </td>
                     <td> <?= $subject['name'] ?> </td>
                     <td> <?= $subject['description'] ?> </td>
+                    
+                    <td > <?= $this->Form->postLink(__('Delete'), ['controller' => 'DepartmentsSubjects', 'action' => 'delete', $department['id'], $subject->id],['confirm' => __('Are you sure you want to delete subject '. $subject->name)]) ?> </td>
                     </tr>
-                <?php endforeach; ?> 
+                <?php endforeach; ?>
+                <tr>
+                <td colspan="3"> 
+                    <?= $this->Form->create(null,['url' => ['controller' => 'DepartmentsSubjects', 'action' => 'add'], ] ) ?>
+                    <fieldset>
+                        <?php
+                            echo $this->Form->control('subjects._ids', ['options' => $subjects]);
+                        ?>
+                    </fieldset>
+                    <td>
+                    <?= $this->Form->button(__('Add')) ?>
+                    </td>
+                    <?= $this->Form->end() ?>
+                </td>
+                 </tr> 
             <?php endforeach; ?>
         </tbody>
     </table>

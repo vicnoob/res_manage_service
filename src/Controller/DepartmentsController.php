@@ -116,4 +116,28 @@ class DepartmentsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+     public function deleteTag($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $department = $this->Departments->get($id);
+        $department = $this->Departments->find()->where(['Department_id' => '4','Subject_id'=>'6']);
+        echo json_encode($department);
+        $options = array(
+            'conditions' => array(
+                'Bookmark_id = id',
+                'Subject_id = id1',
+            ),
+        );
+        
+        $data = $this->Departments_Bookmarks->find('all', $options);
+        echo $department;
+        if ($this->Departments->Subjects->delete($department)) {
+            $this->Flash->success(__('The department has been deleted.'));
+        } else {
+            $this->Flash->error(__('The department could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
 }
