@@ -46,7 +46,7 @@
         <?php
             echo $this->Form->control('name');
             echo $this->Form->control('description');
-            echo $this->Form->control('departments._ids', ['options' => $departments]);
+            echo $this->Form->hidden('departments._ids', ['options' => $departments]);
         ?>
     </fieldset>
         <?= $this->Form->button(__('Submit')) ?>

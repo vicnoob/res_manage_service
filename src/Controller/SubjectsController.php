@@ -54,12 +54,24 @@ class SubjectsController extends AppController
         $subject = $this->Subjects->newEntity();
         if ($this->request->is('post')) {
             $subject = $this->Subjects->patchEntity($subject, $this->request->getData());
-            if ($this->Subjects->save($subject)) {
-                $this->Flash->success(__('The subject has been saved.'));
+            try
+            {
 
+            if ($this->Subjects->save($subject)) {
+
+                $this->Flash->success(__('The subject has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
+            else{
             $this->Flash->error(__('The subject could not be saved. Please, try again.'));
+            return $this->redirect(['action' => 'index']);
+            }
+            }
+            catch (\PDOException $e)
+            {
+                $this->Flash->error(__('The subject with the same name already existed'));
+                return $this->redirect(['action' => 'index']);
+            }
         }
         $departments = $this->Subjects->Departments->find('list', ['limit' => 200]);
         $this->set(compact('subject', 'departments'));
