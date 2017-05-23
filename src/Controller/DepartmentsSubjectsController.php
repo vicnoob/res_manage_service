@@ -51,16 +51,19 @@ class DepartmentsSubjectsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add($id = null)
+    {   
+        $department_id = $this->request->getData('departments.id') ;
+        $subject_id = $this->request->getData('subjects.id');
         $departmentsSubject = $this->DepartmentsSubjects->newEntity();
         if ($this->request->is('post')) {
-            echo json_encode($this->request->getData('subjects'));
-            $departmentsSubject = $this->DepartmentsSubjects->patchEntity($departmentsSubject, $this->request->getData());
+        $departmentsSubject->subject_id = $subject_id;
+        $departmentsSubject->department_id = $department_id;
+            $departmentsSubject = $this->DepartmentsSubjects->save($departmentsSubject);
             if ($this->DepartmentsSubjects->save($departmentsSubject)) {
                 $this->Flash->success(__('The departments subject has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller'=> 'departments','action' => 'index']);
             }
             $this->Flash->error(__('The departments subject could not be saved. Please, try again.'));
         }

@@ -50,10 +50,11 @@
                 <?php endforeach; ?>
                 <tr>
                 <td colspan="3"> 
-                    <?= $this->Form->create(null,['url' => ['controller' => 'DepartmentsSubjects', 'action' => 'add'], ] ) ?>
+                    <?= $this->Form->create(null,['url' => ['controller' => 'DepartmentsSubjects', 'action' => 'add' ] ] ) ?>
                     <fieldset>
                         <?php
-                            echo $this->Form->control('subjects._ids', ['options' => $subjects]);
+                            echo $this->form->hidden('departments.id', ['default' => $department->id]);
+                            echo $this->Form->control('subjects.id', ['options' => $subjects]);
                         ?>
                     </fieldset>
                     <td>

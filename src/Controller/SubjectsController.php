@@ -21,8 +21,9 @@ class SubjectsController extends AppController
     public function index()
     {
         $subjects = $this->paginate($this->Subjects);
+        $departments = $this->Subjects->Departments->find('list', ['limit' => 200]);
 
-        $this->set(compact('subjects'));
+        $this->set(compact('subjects','departments'));
         $this->set('_serialize', ['subjects']);
     }
 
